@@ -1,6 +1,6 @@
 import React from 'react';
 import Theme from './theme';
-import { Dropzone, Logo } from './shared/components';
+import { Dropzone, FileInput, Logo } from './shared/components';
 
 const App: React.FC = () => {
   return (
@@ -8,6 +8,7 @@ const App: React.FC = () => {
       <>
         <Logo />
         <Dropzone />
+        <FileInput accept={['image/jpeg', 'image/png']}>Upload</FileInput>
       </>
     </Theme>
   );
