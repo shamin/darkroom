@@ -17,7 +17,7 @@ const App: React.FC = () => {
           </>
         )}
         {image && (
-          <Center height="100vh">
+          <Center height="100vh" bg="gray.500">
             <Canvas image={image} />
           </Center>
         )}
