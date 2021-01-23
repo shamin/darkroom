@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Box, useToast } from '@chakra-ui/react';
 import { FileType } from '../../types/file';
 
-interface DropzoneProps {}
+interface DropzoneProps {
+  onFileDrop: (files: FileList) => void;
+}
 
-export const Dropzone: React.FC<DropzoneProps> = (props: DropzoneProps) => {
+export const Dropzone: React.FC<DropzoneProps> = ({ onFileDrop }: DropzoneProps) => {
   const toast = useToast();
 
-  const onDrop = (files: DataTransfer['files']) => {
-    console.log(files);
+  const onDrop = (files: FileList) => {
+    onFileDrop(files);
   };
 
   const acceptedFileTypes: FileType[] = ['image/jpeg', 'image/png'];
@@ -38,17 +40,14 @@ export const Dropzone: React.FC<DropzoneProps> = (props: DropzoneProps) => {
 };
 
 export function useDropzone<T>(
-  onDropped: (files: DataTransfer['files'], e: React.DragEvent<T>) => void,
+  onDropped: (files: FileList, e: React.DragEvent<T>) => void,
   acceptedTypes: FileType[] = [],
   onInvalidDrop?: () => void
 ) {
   const [isDraggedOver, setIsDraggedOver] = useState(false);
   const [dragOverCounter, setDragoverCounter] = useState(0);
 
-  const validFileTypes = (
-    files: DataTransfer['files'],
-    acceptedTypes: FileType[]
-  ) => {
+  const validFileTypes = (files: FileList, acceptedTypes: FileType[]) => {
     return (
       Array.from(files).filter(
         (f: File) => !acceptedTypes.includes(f.type as FileType)

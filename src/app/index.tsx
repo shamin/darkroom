@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Theme from './theme';
 import { Dropzone, FileInput, Logo } from './shared/components';
+import { Center } from '@chakra-ui/react';
+import Canvas from './editor/canvas';
 
 const App: React.FC = () => {
+  const [image, setImage] = useState(null);
   return (
     <Theme>
       <>
-        <Logo />
-        <Dropzone />
-        <FileInput accept={['image/jpeg', 'image/png']}>Upload</FileInput>
+        {!image && (
+          <>
+            <Logo />
+            <Dropzone onFileDrop={(files) => setImage(files[0])} />
+            <FileInput accept={['image/jpeg', 'image/png']}>Upload</FileInput>
+          </>
+        )}
+        {image && (
+          <Center height="100vh">
+            <Canvas image={image} />
+          </Center>
+        )}
       </>
     </Theme>
   );
