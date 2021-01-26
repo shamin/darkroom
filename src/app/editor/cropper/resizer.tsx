@@ -7,7 +7,7 @@ interface ResizerProps {}
 const Resizer: React.FC<ResizerProps> = (props: ResizerProps) => {
   const { onResize, resizerBoxProps } = useResizer();
   return (
-    <Box bg="white" position="relative" border="2px solid #000" {...resizerBoxProps}>
+    <Box position="relative" border="2px solid white" {...resizerBoxProps}>
       <ResizerPoint location="top-left" onResize={onResize} />
       <ResizerPoint location="top-right" onResize={onResize} />
       <ResizerPoint location="bottom-left" onResize={onResize} />
@@ -53,7 +53,7 @@ const ResizerPoint: React.FC<ResizerPointProps> = ({
     <Box
       w={`${size}px`}
       h={`${size}px`}
-      bg="black"
+      bg="white"
       borderRadius={'50%'}
       position="absolute"
       onMouseDown={(e) => onResize(location, e)}

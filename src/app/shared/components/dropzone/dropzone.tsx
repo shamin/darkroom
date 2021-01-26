@@ -34,7 +34,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onFileDrop }: DropzoneProps)
       height={200}
       {...dropzoneProps}
     >
-      Hello
+      Drag an image over me
     </Box>
   );
 };

@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { Dimensions } from '../shared/types/image';
 import { getImageDimensions } from '../shared/utils/image';
+import Resizer from './cropper/resizer';
 
 interface CanvasProps {
   image: Blob;
@@ -29,8 +30,11 @@ const Canvas: React.FC<CanvasProps> = ({ image }: CanvasProps) => {
   }, [image]);
 
   return (
-    <Box width={500}>
-      <img src={imageData} width="100%" />
+    <Box width={500} position="relative">
+      <Box position="absolute" w="100%" h="100%" top={0} left={0}>
+        <Resizer />
+      </Box>
+      <Box as="img" src={imageData} width="100%" />
     </Box>
   );
 };
