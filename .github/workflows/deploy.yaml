@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ poc ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -25,4 +25,4 @@ jobs:
       run: npm install -g surge
 
     - name: Deploy to Surge
-      run:  surge ./dist https://combative-cart.surge.sh/ --token ${{secrets.SURGE_TOKEN}}
+      run:  surge ./dist https://darkroom.surge.sh/ --token ${{secrets.SURGE_TOKEN}}
